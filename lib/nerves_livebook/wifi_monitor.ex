@@ -18,6 +18,7 @@ defmodule NervesLivebook.WiFiMonitor do
   """
   use GenServer, restart: :transient
 
+  alias VintageNetWiFi.Cookbook
   require Logger
 
   @presence_prop ["interface", "wlan0", "present"]
@@ -118,7 +119,7 @@ defmodule NervesLivebook.WiFiMonitor do
       # TODO: Change some LED here to indicate AP mode?
       {:ok, hostname} = :inet.gethostname()
 
-      {:ok, config} = VintageNetWiFi.Cookbook.open_access_point(to_string(hostname))
+      {:ok, config} = Cookbook.open_access_point(to_string(hostname))
 
       VintageNet.configure("wlan0", config, persist: false)
     end

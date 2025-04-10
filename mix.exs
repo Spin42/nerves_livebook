@@ -5,12 +5,7 @@ defmodule NervesLivebook.MixProject do
   @version "0.14.2"
   @source_url "https://github.com/nerves-livebook/nerves_livebook"
 
-  @rpi_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4, :rpi0_2, :rpi5]
-  @all_targets @rpi_targets ++
-                 [:bbb, :osd32mp1, :x86_64, :npi_imx6ull, :grisp2, :mangopi_mq_pro]
-
-  # See the BlueHeron repository for the boards that it supports.
-  @ble_targets [:rpi0, :rpi0_2, :rpi3, :rpi3a]
+  @all_targets [:nerves_system_fairphone2]
 
   # Instruct the compiler to create deterministic builds to minimize
   # differences between firmware versions. This helps delta firmware update
@@ -79,7 +74,6 @@ defmodule NervesLivebook.MixProject do
       {:vintage_net, "~> 0.13"},
 
       # Pull in commonly used libraries as a convenience to users.
-      {:blue_heron, "~> 0.5", targets: @ble_targets},
       {:bmp280, "~> 0.2", targets: @all_targets},
       {:circuits_gpio, "~> 2.0 or ~> 1.0"},
       {:circuits_i2c, "~> 2.0 or ~> 1.0"},
@@ -104,7 +98,6 @@ defmodule NervesLivebook.MixProject do
       {:ramoops_logger, "~> 0.1", targets: @all_targets},
       {:recon, "~> 2.5"},
       {:req, "~> 0.5"},
-      {:scroll_hat, "~> 0.1", targets: @rpi_targets},
       {:stb_image, "~> 0.6.0"},
       {:tflite_elixir, "~> 0.3.6", targets: @all_targets},
       {:vega_lite, "~> 0.1"},
@@ -117,20 +110,7 @@ defmodule NervesLivebook.MixProject do
       {:owl, "~> 0.12", runtime: false, targets: @all_targets},
 
       # Nerves system dependencies
-      {:nerves_system_rpi, "~> 1.29", runtime: false, targets: :rpi},
-      {:nerves_system_rpi0, "~> 1.29", runtime: false, targets: :rpi0},
-      {:nerves_system_rpi0_2, "~> 1.29", runtime: false, targets: :rpi0_2},
-      {:nerves_system_rpi2, "~> 1.29", runtime: false, targets: :rpi2},
-      {:nerves_system_rpi3, "~> 1.29", runtime: false, targets: :rpi3},
-      {:nerves_system_rpi3a, "~> 1.29", runtime: false, targets: :rpi3a},
-      {:nerves_system_rpi4, "~> 1.29", runtime: false, targets: :rpi4},
-      {:nerves_system_rpi5, "~> 0.4", runtime: false, targets: :rpi5},
-      {:nerves_system_bbb, "~> 2.25", runtime: false, targets: :bbb},
-      {:nerves_system_osd32mp1, "~> 0.20", runtime: false, targets: :osd32mp1},
-      {:nerves_system_x86_64, "~> 1.29", runtime: false, targets: :x86_64},
-      {:nerves_system_npi_imx6ull, "~> 0.17", runtime: false, targets: :npi_imx6ull},
-      {:nerves_system_grisp2, "~> 0.13", runtime: false, targets: :grisp2},
-      {:nerves_system_mangopi_mq_pro, "~> 0.11", runtime: false, targets: :mangopi_mq_pro},
+      {:nerves_system_fairphone2, path: "../nerves_system_fairphone2", runtime: false, targets: :nerves_system_fairphone2, nerves: [compile: true]},
 
       # Compile-time only
       {:credo, "~> 1.6", only: :dev, runtime: false},

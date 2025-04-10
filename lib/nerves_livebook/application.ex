@@ -2,7 +2,7 @@ defmodule NervesLivebook.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
-
+  alias VintageNetWiFi
   use Application
 
   def start(_type, _args) do
